@@ -14,6 +14,7 @@ import {
   Flex,
   IconButton,
 } from "@chakra-ui/react";
+// import { data } from "./data";
 import { AddIcon } from "@chakra-ui/icons";
 const TableDemo = () => {
   const data = [
@@ -33,7 +34,7 @@ const TableDemo = () => {
       package: "Civil 3",
       rate: "567.80",
       total: "2,98,6792",
-      hasNestedData: true,
+      //   hasNestedData: true,
     },
     {
       package: "Civil 4",
@@ -60,43 +61,33 @@ const TableDemo = () => {
               <Th>Packages</Th>
               <Th>Rate(in sqft) </Th>
               <Th>Total</Th>
+              <Th> </Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>
-                <Checkbox />
-              </Td>
-              <Td>civil 1</Td>
-              <Td>567.80</Td>
-              <Td> ₹2,98,6792</Td>
-              <Flex align="center" my="1">
-                <IconButton
-                  colorScheme="teal"
-                  isRound={true}
-                  variant="ghost"
-                  icon={<AddIcon />}
-                  fontSize="sm"
-                />
-              </Flex>
-            </Tr>
-            <Tr>
-              <Td>
-                <Checkbox />
-              </Td>
-              <Td>civil 2</Td>
-              <Td>567.80</Td>
-              <Td> ₹2,98,6792</Td>
-              <Flex align="center" my="1">
-                <IconButton
-                  colorScheme="teal"
-                  isRound={true}
-                  variant="ghost"
-                  icon={<AddIcon />}
-                  fontSize="sm"
-                />
-              </Flex>
-            </Tr>
+            {data.map((ele, index) => {
+              return (
+                <Tr>
+                  <Td>
+                    <Checkbox />
+                  </Td>
+                  <Td>{ele.package}</Td>
+                  <Td>{ele.rate}</Td>
+                  <Td> ₹ {ele.total}</Td>
+                  <Td isNumeric>
+                    {ele.hasNestedData && (
+                      <IconButton
+                        colorScheme="teal"
+                        isRound={true}
+                        variant="ghost"
+                        icon={<AddIcon />}
+                        fontSize="sm"
+                      />
+                    )}
+                  </Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </TableContainer>
@@ -104,5 +95,4 @@ const TableDemo = () => {
   );
 };
 export default TableDemo;
-
 
