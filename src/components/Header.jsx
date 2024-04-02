@@ -2,9 +2,9 @@ import React from "react";
 import { Flex, Text, IconButton, Button } from "@chakra-ui/react";
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 
-const Navbar = () => {
+const Header = () => {
   return (
-    <Flex size="md" py="2" alignItems="center" justifyContent="space-between">
+    <Flex size="min-content" py="2" alignItems="center" justifyContent="space-between">
       <Flex color="#13193f" alignItems="center" as="b">
         <IconButton
           mr="0.5"
@@ -23,4 +23,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
