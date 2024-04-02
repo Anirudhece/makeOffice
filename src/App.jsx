@@ -1,10 +1,16 @@
+import React from "react";
+import { Container, Text } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
+import Workorder from "./components/Workorder";
 function App() {
-
   return (
     <>
-      <div>hello</div>
+      <Container maxW={"6xxl"}>
+        <Navbar />
+        <Workorder />
+      </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
