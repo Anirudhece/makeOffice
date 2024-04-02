@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex, Text, Box } from "@chakra-ui/react";
+import Table from "./Table";
 
 const Navigator = () => {
   return (
@@ -18,11 +19,11 @@ const Navigator = () => {
   );
 };
 
-
 const Workorder = () => {
   return (
     <>
       <Navigator />
+      <Table />
     </>
   );
 };
