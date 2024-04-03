@@ -3,52 +3,54 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
   Checkbox,
-  CheckboxGroup,
-  Flex,
   IconButton,
 } from "@chakra-ui/react";
-// import { data } from "./data";
+import { data } from "./data";
 import { AddIcon } from "@chakra-ui/icons";
+
+const RowData = ({ ele, leftGap = 0 }) => {
+  return (
+    <>
+      <Tr>
+        <Td>
+          <Checkbox />
+        </Td>
+        <Td ml={leftGap}>{ele.packageName}</Td>
+        <Td>{ele.rate}</Td>
+        <Td> ₹ {ele.total}</Td>
+        <Td isNumeric>
+          {ele.hasNestedData && (
+            <IconButton
+              colorScheme="teal"
+              isRound={true}
+              variant="ghost"
+              icon={<AddIcon />}
+              fontSize="sm"
+            />
+          )}
+        </Td>
+      </Tr>
+      {ele.hasNestedData && ele.nestedData && <TableHead data={ele.nestedData} />}
+    </>
+  );
+};
+
+const TableHead = ({ data }) => {
+  return (
+    <Tbody>
+      {data.map((ele, index) => (
+        <RowData id={index} ele={ele} />
+      ))}
+    </Tbody>
+  );
+};
+
 const TableDemo = () => {
-  const data = [
-    {
-      package: "Civil 1",
-      rate: "567.80",
-      total: "2,98,6792",
-      hasNestedData: true,
-    },
-    {
-      package: "Civil 2",
-      rate: "567.80",
-      total: "2,98,6792",
-      hasNestedData: true,
-    },
-    {
-      package: "Civil 3",
-      rate: "567.80",
-      total: "2,98,6792",
-      //   hasNestedData: true,
-    },
-    {
-      package: "Civil 4",
-      rate: "567.80",
-      total: "2,98,6792",
-      hasNestedData: true,
-    },
-    {
-      package: "Civil 5",
-      rate: "567.80",
-      total: "2,98,6792",
-      hasNestedData: true,
-    },
-  ];
   return (
     <>
       <TableContainer>
@@ -65,29 +67,8 @@ const TableDemo = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((ele, index) => {
-              return (
-                <Tr>
-                  <Td>
-                    <Checkbox />
-                  </Td>
-                  <Td>{ele.package}</Td>
-                  <Td>{ele.rate}</Td>
-                  <Td> ₹ {ele.total}</Td>
-                  <Td isNumeric>
-                    {ele.hasNestedData && (
-                      <IconButton
-                        colorScheme="teal"
-                        isRound={true}
-                        variant="ghost"
-                        icon={<AddIcon />}
-                        fontSize="sm"
-                      />
-                    )}
-                  </Td>
-                </Tr>
-              );
-            })}
+            <TableHead data={data} />
+            
           </Tbody>
         </Table>
       </TableContainer>
@@ -95,4 +76,3 @@ const TableDemo = () => {
   );
 };
 export default TableDemo;
-
