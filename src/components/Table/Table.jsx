@@ -10,16 +10,10 @@ import {
   ChevronDownIcon,
 } from "@chakra-ui/icons";
 
-function Row(props) {
+const Row = (props) => {
   return (
-    <Box
-      className={`custom-row-content`}
-      
-    >
-      <Box
-        className={`custom-check-and-name`}
-    
-      >
+    <Box className={`custom-row-content`}>
+      <Box className={`custom-check-and-name`}>
         <Checkbox
           border="black"
           isChecked={props.isChecked}
@@ -30,19 +24,22 @@ function Row(props) {
           className={`${
             props.type === "civil" || "header" ? "custom-bold" : ""
           } custom-packages`}
-         
         >
           {props.name}
         </Box>
       </Box>
       <Box
-        className={`custom-rate ${props.type === "header" ? "custom-bold" : ""}`}
-        >
+        className={`custom-rate ${
+          props.type === "header" ? "custom-bold" : ""
+        }`}
+      >
         {props.rate}
       </Box>
       <Box
-        className={`custom-total ${props.type === "header" ? "custom-bold" : ""}`}
-          >
+        className={`custom-total ${
+          props.type === "header" ? "custom-bold" : ""
+        }`}
+      >
         {props.type === "header" ? "" : <>₹ </>}
         {props.total}
       </Box>
@@ -69,9 +66,9 @@ function Row(props) {
       )}
     </Box>
   );
-}
+};
 
-export default function Table() {
+const Table = () => {
   return (
     <>
       <Box m="2em">
@@ -153,4 +150,5 @@ export default function Table() {
       </Box>
     </>
   );
-}
+};
+export default Table;
