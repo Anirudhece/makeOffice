@@ -1,5 +1,41 @@
+.custom-row-content {
+    height: 2.5em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.6em;
+}
+.custom-check-and-name {
+    display: flex;
+    width: 45vw;
+}
+.custom-packages {
+    margin-left: 1em;
+}
+.custom-rate {
+    width: 25vw;
+}
+.custom-total {
+    width: 25vw;
+}
+.custom-packages,
+.custom-rate,
+.custom-total {
+    font-weight: 500;
+}
 
-.civil {
-    border: 0.5px solid lightgrey;
-    border-top: none;
+.custom-activity > .custom-row-content > .custom-check-and-name {
+    width: 42vw;
+    margin-left: 3vw;
+}
+
+.custom-work > .custom-row-content > .custom-check-and-name {
+    width: 39vw;
+    margin-left: 6vw;
+}
+.custom-bold {
+    font-weight: 600;
+}
+i {
+    font-weight: 300;
 }
