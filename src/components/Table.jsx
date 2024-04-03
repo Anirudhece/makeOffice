@@ -35,18 +35,20 @@ const RowData = ({ ele, leftGap = 0 }) => {
           )}
         </Td>
       </Tr>
-      {ele.hasNestedData && ele.nestedData && <TableHead data={ele.nestedData} />}
+      {ele.hasNestedData && ele.nestedData && (
+        <TableHead data={ele.nestedData} />
+      )}
     </>
   );
 };
 
 const TableHead = ({ data }) => {
   return (
-    <Tbody>
+    <>
       {data.map((ele, index) => (
         <RowData id={index} ele={ele} />
       ))}
-    </Tbody>
+    </>
   );
 };
 
@@ -68,7 +70,6 @@ const TableDemo = () => {
           </Thead>
           <Tbody>
             <TableHead data={data} />
-            
           </Tbody>
         </Table>
       </TableContainer>

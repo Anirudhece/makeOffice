@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Text, Box } from "@chakra-ui/react";
 import Table from "./Table";
-import Temp from './Temp'
+// import Temp from './Temp'
 import { data } from "./data";
 
 const Navigator = () => {
