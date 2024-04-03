@@ -15,37 +15,12 @@ import {
 import { useSort } from "@table-library/react-table-library/sort";
 import { usePagination } from "@table-library/react-table-library/pagination";
 import {
-  fromTreeToList,
   findNodeById,
   insertNode,
 } from "@table-library/react-table-library/common";
-import {
-  Text,
-  Box,
-  HStack,
-  InputGroup,
-  InputLeftElement,
-  Input,
-  Checkbox,
-  IconButton,
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from "@chakra-ui/react";
+import { Box, HStack, Checkbox, IconButton, Button } from "@chakra-ui/react";
 import {
   FaPen,
-  FaSearch,
   FaChevronRight,
   FaChevronDown,
   FaChevronUp,
@@ -54,24 +29,24 @@ import {
 
 // import { nodes } from "../../../data";
 const nodes = [
-    {
-      id: 1,
-      name: "Task 1",
-      deadline: new Date(),
-      type: "Type A",
-      isComplete: false,
-      nodes: [],
-    },
-    {
-      id: 2,
-      name: "Task 2",
-      deadline: new Date(),
-      type: "Type B",
-      isComplete: true,
-      nodes: [],
-    },
-    // Add more sample nodes as needed
-  ];
+  {
+    id: 1,
+    name: "Task 1",
+    deadline: new Date(),
+    type: "Type A",
+    isComplete: false,
+    nodes: [],
+  },
+  {
+    id: 2,
+    name: "Task 2",
+    deadline: new Date(),
+    type: "Type B",
+    isComplete: true,
+    nodes: [],
+  },
+  // Add more sample nodes as needed
+];
 
 const key = "Showreel";
 
@@ -256,7 +231,7 @@ const Component = () => {
       select: {
         renderHeaderCellSelect: () => (
           <Checkbox
-            colorScheme="teal"
+            borderColor="black"
             isChecked={select.state.all}
             isIndeterminate={!select.state.all && !select.state.none}
             onChange={select.fns.onToggleAll}
@@ -264,7 +239,7 @@ const Component = () => {
         ),
         renderCellSelect: (item) => (
           <Checkbox
-            colorScheme="teal"
+            borderColor="black"
             style={{ backgroundColor: "#ffffff" }}
             isChecked={select.state.ids.includes(item.id)}
             onChange={() => select.fns.onToggleById(item.id)}
@@ -324,166 +299,20 @@ const Component = () => {
 
   return (
     <>
-      {/* <Modal isOpen={modalOpened} onClose={() => setModalOpened(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            Not all features included here, but we got ...
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Resize
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Sort
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Search
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Filter
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Select
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Tree
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Drawer on Edit
-              </Checkbox>
-            </div>
-            <div>
-              <Checkbox colorScheme="teal" isChecked>
-                Pagination
-              </Checkbox>
-            </div>
-          </ModalBody>
-        </ModalContent>
-      </Modal> */}
-
-      {/* Form */}
-
-      {/* <HStack m={3}>
-        <Button colorScheme="teal" onClick={() => setModalOpened(true)}>
-          Features?
-        </Button>
-
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            children={<FaSearch style={{ color: "#4a5568" }} />}
-          />
-          <Input
-            placeholder="Search Task"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-          />
-        </InputGroup>
-
-        <Checkbox
-          style={{ whiteSpace: "nowrap" }}
-          colorScheme="teal"
-          isChecked={isHide}
-          onChange={(event) => setHide(event.target.checked)}
-        >
-          Hide Complete
-        </Checkbox>
-      </HStack> */}
-
       {/* Table */}
 
       <Box p={3} borderWidth="1px" borderRadius="lg">
         <CompactTable
           columns={COLUMNS}
           data={{ ...data, nodes: modifiedNodes }}
-          theme={theme}
+            // theme={theme}
           layout={{ custom: true }}
           select={select}
           tree={tree}
-          sort={sort}
-          pagination={pagination}
+        //   sort={sort}
+        //   pagination={pagination}
         />
       </Box>
-
-      <br />
-      <HStack justify="flex-end">
-        <IconButton
-          aria-label="previous page"
-          icon={<FaChevronLeft />}
-          colorScheme="teal"
-          variant="ghost"
-          disabled={pagination.state.page === 0}
-          onClick={() => pagination.fns.onSetPage(pagination.state.page - 1)}
-        />
-
-        {pagination.state.getPages(modifiedNodes).map((_, index) => (
-          <Button
-            key={index}
-            colorScheme="teal"
-            variant={pagination.state.page === index ? "solid" : "ghost"}
-            onClick={() => pagination.fns.onSetPage(index)}
-          >
-            {index + 1}
-          </Button>
-        ))}
-        <IconButton
-          aria-label="next page"
-          icon={<FaChevronRight />}
-          colorScheme="teal"
-          variant="ghost"
-          disabled={
-            pagination.state.page + 1 ===
-            pagination.state.getTotalPages(data.nodes)
-          }
-          onClick={() => pagination.fns.onSetPage(pagination.state.page + 1)}
-        />
-      </HStack>
-
-      {/* <Drawer isOpen={drawerId} onClose={handleCancel} placement="right">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
-
-          <DrawerBody>
-            <Text>Name: </Text>
-            <Input
-              autoFocus
-              value={
-                edited ||
-                fromTreeToList(data.nodes).find((node) => node.id === drawerId)
-                  ?.name
-              }
-              onChange={handleEdit}
-              data-autofocus
-            />
-          </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={handleCancel}>
-              Cancel
-            </Button>
-            <Button onClick={handleSave} colorScheme="teal">
-              Save
-            </Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer> */}
     </>
   );
 };
