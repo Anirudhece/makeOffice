@@ -1,5 +1,25 @@
+const nodes = [
+    {
+      id: 1,
+      name: "Task 1",
+      deadline: new Date(),
+      type: "Type A",
+      isComplete: false,
+      nodes: [],
+    },
+    {
+      id: 2,
+      name: "Task 2",
+      deadline: new Date(),
+      type: "Type B",
+      isComplete: true,
+      nodes: [],
+    },
+]
+
 export const data = [
     {
+        id:1,
         packageName: "Civil 1",
         rate: "567.80",
         total: "2,98,6792",
