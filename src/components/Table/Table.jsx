@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import { data } from "../data/data";
 import "./Table.css";
-
 import { IconButton, Box, Checkbox } from "@chakra-ui/react";
 import {
   AddIcon,
