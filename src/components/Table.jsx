@@ -13,14 +13,14 @@ import {
 import { data } from "./data";
 import { AddIcon } from "@chakra-ui/icons";
 
-const RowData = ({ ele, leftGap = 0 }) => {
+const RowData = ({ ele, leftGap }) => {
   return (
     <>
       <Tr>
-        <Td>
-          <Checkbox />
+        <Td px="0">
+          <Checkbox borderColor="black" px="0" ml={leftGap} />
         </Td>
-        <Td ml={leftGap}>{ele.packageName}</Td>
+        <Td>{ele.packageName}</Td>
         <Td>{ele.rate}</Td>
         <Td> ₹ {ele.total}</Td>
         <Td isNumeric>
@@ -36,17 +36,17 @@ const RowData = ({ ele, leftGap = 0 }) => {
         </Td>
       </Tr>
       {ele.hasNestedData && ele.nestedData && (
-        <TableHead data={ele.nestedData} />
+        <TableHead leftGap={leftGap} data={ele.nestedData} />
       )}
     </>
   );
 };
 
-const TableHead = ({ data }) => {
+const TableHead = ({ data, leftGap = 0 }) => {
   return (
     <>
       {data.map((ele, index) => (
-        <RowData id={index} ele={ele} />
+        <RowData leftGap={leftGap + 8} id={index} ele={ele} />
       ))}
     </>
   );
@@ -60,7 +60,7 @@ const TableDemo = () => {
           <Thead>
             <Tr colorScheme="teal">
               <Th>
-                <Checkbox />
+                <Checkbox borderColor="black" />
               </Th>
               <Th>Packages</Th>
               <Th>Rate(in sqft) </Th>
